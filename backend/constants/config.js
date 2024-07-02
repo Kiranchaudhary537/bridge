@@ -1,0 +1,1 @@
+export const XY_FINANCE_API_BASE_URL = 'https://open-api.xy.finance/v1';
