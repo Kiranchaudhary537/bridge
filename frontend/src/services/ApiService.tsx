@@ -1,35 +1,37 @@
-import axios from "axios";
-import { Token } from "../types";
+import axios from 'axios';
 
+const API_URL = 'http://localhost:3000/';
 const baseAPI = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: API_URL,
 });
 
 export const fetchTokens = async () => {
   const response = await baseAPI.get(`/tokens`);
+  // console.log(response.data)
+  console.dir(response.data)
+  // const response={
+  //   data:{
+  //     tokens:[
+  //       {
+  //         symbol: 'BTC',
+  //         name: 'Bitcoin'
+  //       },
+  //       {
+  //         symbol: 'ETH',
+  //         name: 'Ethereum'
+  //       }
+  //     ]
+  //   }
+  // }
   return response.data;
 };
 
-export const fetchSupportedChains = async () => {
-  const response = await baseAPI.get(`/supportedChains`);
-  return response.data?.supportedChains;
-};
-
-export const fetchQuote = async (src:Token | null, dest:Token | null, amount:number) => {
-  const response = await baseAPI.post(`/quotes`, {
-    srcChainId: src?.chainId,
-    srcQuoteTokenAddress: src?.address,
-    srcQuoteTokenAmount: amount,
-    dstChainId: dest?.chainId,
-    dstQuoteTokenAddress: dest?.address,
-    slippage: 1,
-    affiliate: "0x018b1751a6f4ec773faf8e1a24ed0c3b271e538c",
-    commissionRate: 0,
-  });
+export const fetchQuote = async (token: string, chain: string) => {
+  const response = await baseAPI.post(`/quotes`, { token, chain });
   return response.data;
 };
 
-export const fetchTransactionParams = async (params: any) => {
-  const response = await baseAPI.post(`/params`, { params });
+export const fetchTransactionParams = async (token: string, chain: string) => {
+  const response = await baseAPI.post(`/params`, { token, chain });
   return response.data;
 };

@@ -1,4 +1,6 @@
-import * as xyFinanceService from "../services/xyFinance.service.js";
+import * as xyFinanceService from '../services/xyFinance.service.js';
+
+
 
 export const getTokens = async (req, res) => {
   try {
@@ -6,7 +8,7 @@ export const getTokens = async (req, res) => {
     const tokens = await xyFinanceService.getRecommendedTokens(chainId);
     res.json(tokens);
   } catch (error) {
-    console.log(error.message);
-    res.status(500).json({ error: "Error fetching tokens" });
+    res.status(500).json({ error: 'Error fetching tokens' });
   }
 };
+

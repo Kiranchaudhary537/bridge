@@ -5,21 +5,18 @@ export const getQuote = async (req, res) => {
     const quoteParams = req.body;
     const {
       srcChainId,
-      srcQuoteTokenAddress,
-      srcQuoteTokenAmount,
-      dstChainId,
-      dstQuoteTokenAddress,
-      slippage,
-      affiliate,
-      commissionRate,
+      fromTokenAddress,
+      amount,
+      destChainId,
+      toTokenAddress,
     } = req.body;
-    console.dir(req.body)
+
     if (
       !srcChainId ||
-      !srcQuoteTokenAddress ||
-      !srcQuoteTokenAmount||
-      !dstChainId ||
-      !dstQuoteTokenAddress
+      !fromTokenAddress ||
+      !amount ||
+      !destChainId ||
+      !toTokenAddress
     ) {
       return res.status(400).json({ error: "Missing required parameters" });
     }

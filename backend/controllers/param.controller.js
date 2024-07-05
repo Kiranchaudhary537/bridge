@@ -1,5 +1,14 @@
 import * as xyFinanceService from "../services/xyFinance.service.js";
 
+// export const getTransactionParams = async (req, res) => {
+//   try {
+//     const buildTxParams = req.body;
+//     const txParams = await xyFinanceService.getBuildTx(buildTxParams);
+//     res.json(txParams);
+//   } catch (error) {
+//     res.status(500).json({ error: 'Error fetching transaction parameters' });
+//   }
+// };
 
 export const getAllowance = async (req, res) => {
   const { chainId, owner, spender, tokenAddress, amount } = req.body;
@@ -28,7 +37,7 @@ export const getAllowance = async (req, res) => {
 
 export const getApprove = async (req, res) => {
   const { chainId, owner, spender, tokenAddress, amount } = req.body;
-  if (!chainId || !owner || !spender || !tokenAddress) {
+  if(!chainId || !owner || !spender || !tokenAddress) {
     return res.status(400).json({ error: "Missing required parameters" });
   }
 
@@ -46,31 +55,39 @@ export const getApprove = async (req, res) => {
 };
 
 export const Swap = async (req, res) => {
-  // const {
-  //   srcChainId,
-  //   fromTokenAddress,
-  //   amount,
-  //   destChainId,
-  //   toTokenAddress,
-  //   receiveAddress,
-  //   slippage,
-  //   referrer,
-  // } = req.body;
+  const {
+    srcChainId,
+    fromTokenAddress,
+    amount,
+    destChainId,
+    toTokenAddress,
+    receiveAddress,
+    slippage,
+    referrer,
+  } = req.body;
 
-  // if (
-  //   !srcChainId ||
-  //   !fromTokenAddress ||
-  //   !amount ||
-  //   !destChainId ||
-  //   !toTokenAddress ||
-  //   !receiveAddress
-  // ) {
-  //   return res.status(400).json({ error: "Missing required parameters" });
-  // }
+  if (
+    !srcChainId ||
+    !fromTokenAddress ||
+    !amount ||
+    !destChainId ||
+    !toTokenAddress ||
+    !receiveAddress
+  ) {
+    return res.status(400).json({ error: "Missing required parameters" });
+  }
 
   try {
-    console.dir(req.body.params);
-    const data = await xyFinanceService.getSwapTx(req.body.params);
+    const data = await xyFinanceService.getSwapTx({
+      srcChainId,
+      fromTokenAddress,
+      amount,
+      destChainId,
+      toTokenAddress,
+      receiveAddress,
+      slippage,
+      referrer,
+    });
     res.json(data);
   } catch (error) {
     res.status(500).json({ error: error.message });
