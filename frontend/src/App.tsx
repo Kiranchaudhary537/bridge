@@ -1,13 +1,10 @@
-import React from 'react';
-import TokenSelector from './components/TokenSelector';
-import CurrencyConverter from './components/CurrencyConverter';
+import React from "react";
+import CurrencyConverter from "./components/TokenConverter";
 
 const App: React.FC = () => {
   return (
     <div>
-      <h1 className='text-center text-3xl font-bold'>Bridge Application</h1>
-      {/* <TokenSelector /> */}
-      <CurrencyConverter/>
+      <CurrencyConverter />
     </div>
   );
 };
