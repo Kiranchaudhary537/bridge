@@ -7,7 +7,7 @@ export const getRecommendedTokens = async (chainId) => {
   return response.data;
 };
 
-export const getSupportedChains = async (chainId) => {
+export const getSupportedChains = async () => {
   const response = await xyFinanceApi.get('/supportedChains');
   return response.data;
 };
@@ -27,7 +27,7 @@ export const getApproveTx = async (params) => {
   return response.data;
 };
 export const getSwapTx = async (params) => {
-  const response = await xyFinanceApi.get('/swap', { params });
+  const response = await xyFinanceApi.get('/buildTx', { params });
   return response.data;
 };
 
