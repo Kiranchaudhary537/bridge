@@ -23,6 +23,9 @@ app.use("/params", paramRoutes);
 app.get("/", (req, res) => {
   res.send("Backend working");
 });
+
 app.listen(3000, () => {
   console.log(`Server is running on http://localhost:3000`);
 });
+
+export default app;
