@@ -70,13 +70,15 @@ const TokenConverter: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    if (amount && sourceToken && destToken) {
+    console.log(amount)
+    if (amount  && sourceToken && destToken) {
       setQuoteStatus("Loading...");
       setQuotes(null);
       const multiplier = Math.pow(10, sourceToken.decimals);
       const totalAmount = parseInt(amount) * multiplier;
       fetchQuoteData(totalAmount);
     } else {
+      setQuotes(null);
       setQuoteStatus("Fill up source, destination, and amount input box");
     }
   };
@@ -113,7 +115,6 @@ const TokenConverter: React.FC = () => {
                 <button
                   onClick={handleSubmit}
                   className="mt-6 w-full p-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600"
-                  disabled={!sourceToken || !destToken || !amount}
                 >
                   Convert
                 </button>
