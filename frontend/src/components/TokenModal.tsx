@@ -7,27 +7,20 @@ interface TokenModalProps {
   onClose: () => void;
 }
 
-const TokenModal: React.FC<TokenModalProps> = ({
-  tokens,
-  onSelect,
-  onClose,
-}) => {
+const TokenModal: React.FC<TokenModalProps> = ({ tokens, onSelect, onClose }) => {
   const [search, setSearch] = useState("");
 
-  
-  const filteredCurrencies = tokens?.filter(
+  // Filter tokens based on search input
+  const filteredTokens = tokens?.filter(
     (token) =>
       token.name.toLowerCase().includes(search.toLowerCase()) ||
       token.symbol.toLowerCase().includes(search.toLowerCase())
   );
 
-  
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-75 flex justify-center items-center">
-      <div className="bg-white  h-[90%] rounded-lg p-6 w-full max-w-lg shadow-lg flex flex-col">
-        <h2 className="text-2xl font-bold mb-4 text-center">
-          Select a Token
-        </h2>
+      <div className="bg-white h-[90%] rounded-lg p-6 w-full max-w-lg shadow-lg flex flex-col">
+        <h2 className="text-2xl font-bold mb-4 text-center">Select a Token</h2>
         <input
           type="text"
           placeholder="Search by name or symbol..."
@@ -36,7 +29,7 @@ const TokenModal: React.FC<TokenModalProps> = ({
           className="w-full p-2 border rounded-lg mb-4"
         />
         <div className="overflow-y-auto">
-          {filteredCurrencies?.map((token,index) => (
+          {filteredTokens?.map((token, index) => (
             <div
               key={index}
               onClick={() => onSelect(token)}
@@ -49,7 +42,7 @@ const TokenModal: React.FC<TokenModalProps> = ({
               />
               <div>
                 <p className="font-bold">{token.name}</p>
-                <p >{token.symbol}</p>
+                <p>{token.symbol}</p>
               </div>
             </div>
           ))}

@@ -6,7 +6,6 @@ export interface Token {
   address: string;
   chainId: number;
 }
-export type QuoteRoute = Record<string, any>;
 
 export interface FetchTokensResponse {
   recommendedTokens: Token[];
@@ -15,3 +14,5 @@ export interface FetchTokensResponse {
 export interface FetchQuoteResponse {
   routes: QuoteRoute[];
 }
+
+export type QuoteRoute = Record<string, any>;
