@@ -10319,4 +10319,4 @@
               children: k.jsx(Hd, {}),
             });
           }
-          ic(document.getElementById("custom-sidebar")).render(k.jsx(Vd, {}));
+          ic(document.getElementsByTagName('body')[0]).render(k.jsx(Vd, {}));
