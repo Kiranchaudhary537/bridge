@@ -12355,7 +12355,7 @@ const {
     Ne.useEffect(() => {
       (async () => {
         try {
-          const g = await J.get("https://webflow-3aa1.onrender.com/data");
+          const g = await J.get("http://localhost:3001/data");
           t(g.data);
         } catch (g) {
           console.log(g);
@@ -12518,7 +12518,7 @@ const {
                                     {
                                       href: w.weblink,
                                       className: `text-sm font-medium  tracking-wide text-gray-800
-                          flex items-center justify-between px-8 py-3 hover:text-blue-600 cursor-pointer border-b border-gray-200 last:border-b-0`,
+                         flex items-center justify-between px-8 py-3 hover:text-blue-600 cursor-pointer border-b border-gray-200 last:border-b-0`,
                                       onClick: () => s(!!w.hasSubmenu, g, f),
                                       children: w.name,
                                     },
@@ -12635,19 +12635,20 @@ const {
                       }),
                     ],
                   }),
-                C.jsx("div", {
-                  className: "p-4 border-b border-gray-200",
-                  children: C.jsx("div", {
-                    className:
-                      "flex items-center cursor-pointer hover:text-blue-600",
-                    children: C.jsxs("a", {
-                      href: g.weblink,
+                g.submenu.length > 1 &&
+                  C.jsx("div", {
+                    className: "p-4 border-b border-gray-200",
+                    children: C.jsx("div", {
                       className:
-                        "text-sm font-medium text-gray-800 uppercase tracking-wide hover:text-blue-600 cursor-pointer",
-                      children: ["EXPLORE ALL ", g.name],
+                        "flex items-center cursor-pointer hover:text-blue-600",
+                      children: C.jsxs("a", {
+                        href: g.weblink,
+                        className:
+                          "text-sm font-medium text-gray-800 uppercase tracking-wide hover:text-blue-600 cursor-pointer",
+                        children: ["EXPLORE ALL ", g.name],
+                      }),
                     }),
                   }),
-                }),
                 C.jsx("div", {
                   className: "flex-1 overflow-y-auto ",
                   children:
