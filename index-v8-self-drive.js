@@ -12355,7 +12355,7 @@ const {
     Ne.useEffect(() => {
       (async () => {
         try {
-          const g = await J.get("http://localhost:3001/data");
+          const g = await J.get("https://webflow-3aa1.onrender.com/data");
           t(g.data);
         } catch (g) {
           console.log(g);
